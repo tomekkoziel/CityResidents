@@ -20,6 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 PORT = os.getenv("PORT", default="5000")
 
+CSRF_TRUSTED_ORIGINS = ["https://city-residents-d296f243fb43.herokuapp.com"]
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
