@@ -75,20 +75,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'city_residents.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-# NEO4J_DATABASES = {
-#     "default": {
-#         "HOST": "d5e585c5.databases.neo4j.io",
-#         "SCHEME": "neo4j+s",
-#         "USER": "neo4j",
-#         "PASSWORD": "d3zda0Dd1DzVr_m7GfsPik_YFGlM-qfmdeCjZrxkKFc",
-#     }
-# }
-
-# NEOMODEL_NEO4J_BOLT_URL  = 'neo4j+s://neo4j:d3zda0Dd1DzVr_m7GfsPik_YFGlM-qfmdeCjZrxkKFc@d5e585c5.databases.neo4j.io'
-
 AURA_CONNECTION_URI = "neo4j+s://d5e585c5.databases.neo4j.io"
 AURA_USERNAME = "neo4j"
 AURA_PASSWORD = "d3zda0Dd1DzVr_m7GfsPik_YFGlM-qfmdeCjZrxkKFc"

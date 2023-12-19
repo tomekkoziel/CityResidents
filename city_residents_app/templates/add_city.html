@@ -1,29 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <title>Person List</title>
+    <title>Add City</title>
 </head>
 
 <body>
+    <h1>Add City</h1>
+    <form method="post" action="{% url 'city_residents_app:add_city' %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+        <br>
+        <input type="submit" value="Add City">
+    </form>
 
-    <div class="container mt-5">
-        <h2>Person List</h2>
-        <ul class="list-group">
-            {% for person in people %}
-            <li class="list-group-item">
-                <h4>{{ person.name }}</h4>
-                <p>Age: {{ person.age }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-
-        <a href="/" class="btn btn-primary mb-3">Home</a>
-        <a href="{% url 'city_residents_app:add_person' %}" class="btn btn-primary mb-3">Add Person</a>
-    </div>
+    <a href="/" class="btn btn-primary mb-3">Home</a>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

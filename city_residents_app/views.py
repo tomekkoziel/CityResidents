@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import City, Person
-from neomodel import db
 from neo4j import GraphDatabase
 import re
 
@@ -62,7 +61,41 @@ def list_cities_and_users(request):
 
     residents_matches = re.findall(residents_pattern, result_string)
     residents_data = [eval(match) for match in residents_matches] 
-
+    
     cities_with_residents = [{'city': city, 'residents': residents} for city, residents in zip(city_names, residents_data)]
 
+    print(cities_with_residents)
+    
     return render(request, 'city_user_list.html', {'cities_with_residents': cities_with_residents})
+
+def add_person(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        age = int(request.POST.get('age'))
+
+        with drivers as driver:
+            driver.execute_query("CREATE (:Person {name: $name, age: $age})", name=name, age=age)
+
+        driver.close() 
+        
+    return render(request, 'add_person.html')
+
+def add_city(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+
+        with drivers as driver:
+            driver.execute_query("CREATE (:City {name: $name})", name=name)
+
+    return render(request, 'add_city.html')
+
+def add_relationship(request):
+    if request.method == 'POST':
+        person_name = request.POST.get('person_name')
+        city_name = request.POST.get('city_name')
+
+        with drivers as driver:
+            driver.execute_query("MATCH (p:Person {name: $person_name}), (c:City {name: $city_name}) "
+                            "CREATE (p)-[:LIVES_IN]->(c)", person_name=person_name, city_name=city_name)
+
+    return render(request, 'add_relationship.html')
